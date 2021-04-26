@@ -23,28 +23,32 @@
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="79dp"
+        android:layout_height="123dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.203"
-        tools:srcCompat="@tools:sample/avatars" />
+        tools:srcCompat="@android:drawable/btn_star_big_on" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/timer"
         android:layout_width="105dp"
         android:layout_height="70dp"
         android:background="#FF0000"
         android:shadowColor="#E30D0D"
-        android:text="TextView"
+        android:text="30"
         android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="24sp"
-        tools:layout_editor_absoluteX="2dp"
-        tools:layout_editor_absoluteY="666dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/textView3"
@@ -60,7 +64,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/textView2"
+        app:layout_constraintStart_toStartOf="@+id/timer"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
@@ -102,10 +106,10 @@
         app:layout_constraintVertical_bias="0.644" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/neverno"
         android:layout_width="152dp"
         android:layout_height="48dp"
-        android:text="Button"
+        android:text="Неправильный ответ"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -115,10 +119,10 @@
         app:layout_constraintVertical_bias="0.499" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/verno"
         android:layout_width="149dp"
         android:layout_height="51dp"
-        android:text="Button"
+        android:text="правильный ответ"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
