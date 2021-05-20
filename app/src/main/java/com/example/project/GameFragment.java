@@ -21,6 +21,7 @@ import com.example.project.databinding.GameFragmentBinding;
 public class GameFragment extends Fragment {
     GameViewModel viewModel;
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
