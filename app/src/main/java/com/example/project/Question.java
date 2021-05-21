@@ -5,14 +5,14 @@ import java.util.List;
 
 public class Question {
     String name;
-    Integer url;
+    String url;
 
-    Question(String name, Integer url) {
+    Question(String name, String url) {
         this.name = name;
         this.url = url;
     }
 
-    public Integer getUrl() {
+    public String getUrl() {
         return url;
     }
 
