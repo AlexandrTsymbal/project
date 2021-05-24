@@ -17,11 +17,6 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-enum Status {
-    END,
-    GAME
-}
-
 public class GameViewModel extends ViewModel {
 
     private CountDownTimer timer;
@@ -31,11 +26,10 @@ public class GameViewModel extends ViewModel {
     private int secondsLeft = 0;
     private List<Question> questions;
     private Random random = new Random();
-    private Status status = Status.END;
 
-//    GameViewModel() {
-
-//    }
+    public GameViewModel() {
+        loadQuestions();
+    }
 
     private MutableLiveData<String> score = new MutableLiveData<>("0 / 0");
     public LiveData<String> getScore() {
@@ -57,14 +51,18 @@ public class GameViewModel extends ViewModel {
         return answers;
     }
 
+    private MutableLiveData<GameStatus> status = new MutableLiveData<>(GameStatus.LOADING);
+    public LiveData<GameStatus> getStatus() {
+        return status;
+    }
+
     public void start() {
-        if (status == Status.GAME) {
+        if (status.getValue() == GameStatus.GAME) {
             return;
         }
 
         reset();
         setSecondsLeft(30);
-        initQuestion();
         nextQuestion();
         timer = new CountDownTimer(3600*1000, 1000) {
             @Override
@@ -77,7 +75,7 @@ public class GameViewModel extends ViewModel {
             }
         };
         timer.start();
-        status = Status.GAME;
+        status.setValue(GameStatus.GAME);
     }
 
     private void changeSecondsLeft(int i) {
@@ -99,7 +97,7 @@ public class GameViewModel extends ViewModel {
 
     private void gameOver() {
         reset();
-        status = Status.END;
+        status.setValue(GameStatus.END);
     }
 
     private void setSecondsLeft(int i) {
@@ -139,7 +137,7 @@ public class GameViewModel extends ViewModel {
     }
 
     public void checkAnswer(int index) {
-        if (status == Status.END) {
+        if (status.getValue() == GameStatus.END) {
             return;
         }
 
@@ -154,18 +152,6 @@ public class GameViewModel extends ViewModel {
         nextQuestion();
     }
 
-    public void initQuestion() {
-//        questions = new ArrayList<Question>();
-//        questions.add(new Question("Michael\nJackson", R.drawable.img1));
-//        questions.add(new Question("Jesus", R.drawable.img2));
-//        questions.add(new Question("Lionel\nMessi", R.drawable.img3));
-//        questions.add(new Question("Princess\nDiana", R.drawable.img4));
-//        questions.add(new Question("Queen\nElizabeth II", R.drawable.img5));
-//        questions.add(new Question("Elvis\nPresley", R.drawable.img6));
-//        questions.add(new Question("Madonna", R.drawable.img7));
-//        questions.add(new Question("Albert\nEnstein", R.drawable.img8));
-    }
-
     public void loadQuestions() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://200-famous-people.deno.dev/")
@@ -178,10 +164,12 @@ public class GameViewModel extends ViewModel {
             @Override
             public void onResponse(Call<List<Question>> call, Response<List<Question>> response) {
                 questions = response.body();
+                start();
             }
 
             @Override
             public void onFailure(Call<List<Question>> call, Throwable t) {
+                status.setValue(GameStatus.FAIL);
             }
         });
     }
