@@ -26,13 +26,7 @@ public class GameFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         GameFragmentBinding binding = GameFragmentBinding.inflate(getLayoutInflater());
-        viewModel = new ViewModelProvider(getActivity()).get(GameViewModel.class);
-        viewModel.getCurrent().observe(getActivity(), new Observer<Question>() {
-            @Override
-            public void onChanged(Question question) {
-                binding.imageView.setImageResource(question.url);
-            }
-        });
+        viewModel = new ViewModelProvider(this).get(GameViewModel.class);
 
         binding.setLifecycleOwner(this);
         binding.setViewModel(viewModel);

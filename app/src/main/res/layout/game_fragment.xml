@@ -47,6 +47,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/time"
+            app:imageUrl="@{viewModel.current.url}"
             tools:src="@drawable/img1" />
 
         <TableLayout
@@ -145,12 +146,25 @@
             </TableRow>
         </TableLayout>
 
-        <Button
-            android:id="@+id/startButton"
+
+
+        <ImageView
+            android:id="@+id/status_image"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/white"
+            android:scaleType="center"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:gameStatus="@{viewModel.status}"/>
+
+        <TextView
+            android:id="@+id/gameStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="@{() -> viewModel.start()}"
-            android:text="Start"
+            android:text="@{viewModel.status.toString()}"
             app:layout_constraintBottom_toTopOf="@id/answersTableLayout"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginLeft="8dp"/>
