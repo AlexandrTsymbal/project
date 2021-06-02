@@ -18,7 +18,7 @@ public class BindingAdapters {
         switch (status) {
             case LOADING: {
                 view.setVisibility(View.VISIBLE);
-                view.setImageResource(R.drawable.loading_img);
+                view.setImageResource(R.drawable.ic_cloud_download);
                 break;
             }
             case FAIL: {

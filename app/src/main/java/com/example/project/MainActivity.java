@@ -13,13 +13,14 @@ import android.widget.RadioGroup;
 
 public class MainActivity extends AppCompatActivity {
     RadioGroup radioGroup;
+    NavController navController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        NavController navController = Navigation.findNavController(this, R.id.navHost);
+        navController = Navigation.findNavController(this, R.id.navHost);
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 //        RadioGroup radioGroup = findViewById(R.id.radioGroup);
@@ -53,5 +54,10 @@ public class MainActivity extends AppCompatActivity {
 //        };
 
 
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        return navController.navigateUp() || super.onSupportNavigateUp();
     }
 }

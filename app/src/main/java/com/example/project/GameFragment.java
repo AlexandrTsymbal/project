@@ -45,7 +45,7 @@ public class GameFragment extends Fragment {
     public void showFinalDialog() {
         new MaterialAlertDialogBuilder(getContext())
                 .setTitle("Congratulations!")
-                .setMessage("You know {x} celebrities")
+                .setMessage(String.format("You know %d celebrities", viewModel.getCountRight()))
                 .setCancelable(false)
                 .setNegativeButton("exit", (i, v) -> exitGame())
                 .setPositiveButton("play again", (i, v) -> restartGame())
