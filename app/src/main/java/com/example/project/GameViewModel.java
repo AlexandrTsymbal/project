@@ -56,11 +56,17 @@ public class GameViewModel extends ViewModel {
         return status;
     }
 
+    public int getCountRight() {
+        return countRight;
+    }
+
     public void start() {
         if (status.getValue() == GameStatus.GAME) {
             return;
         }
-
+        countAnswers = 0;
+        countRight = 0;
+        updateScore();
         reset();
         setSecondsLeft(30);
         nextQuestion();
@@ -148,8 +154,12 @@ public class GameViewModel extends ViewModel {
         } else {
             changeSecondsLeft(-5);
         }
-        score.setValue(String.format("%d / %d", countRight, countAnswers));
+        updateScore();
         nextQuestion();
+    }
+
+    private void updateScore() {
+        score.setValue(String.format("%d / %d", countRight, countAnswers));
     }
 
     public void loadQuestions() {
